@@ -1,0 +1,44 @@
+<html>
+<header>
+
+</header>
+
+<body>
+
+
+<br /><br /><br />
+<div class="container" style="background-color:green; opacity:0.8; padding:20px; border-radius:20px;">
+	<H2>Landing page</H2>
+	<%= link_to "sign in", new_user_session_path, :class => 'center' %>
+	<p>The contents of this page is temporary. An about page should go here instead.</p>
+	<br />
+	
+	<% quotes = YahooFinance.quotes(["GOOG", "NATU3.SA", "USDJPY=X"], [:ask, :bid, :last_trade_date], { raw: false } ) %>
+
+	<% quotes.each do |quote| %>
+		<p>Symbol: <%= quote.symbol %></p>
+		<p>Price: <%= quote.ask %></p>
+		<p>Last trade: <%= quote.last_trade_date %></p>
+	<% end %>
+
+
+
+	<br />
+	<br />
+	<h3>Historical Quotes</h3>
+	<% data = YahooFinance.historical_quotes("GOOG", 1.month.ago, Time::now, { raw: false, period: :daily }) %>
+	
+	<h3><%= data[0].symbol %></h3>
+			
+	<% data.each do |f| %>
+		<p>Volume: <%= f.trade_date %></p>
+		<p>Close: $<%= f.close %></p>
+	<% end %>
+
+
+	<br />
+</div>
+
+
+</body>
+</html>
