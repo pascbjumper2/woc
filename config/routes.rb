@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
 
-root 'home#index' 
-get "dashboard" => "dashboard#index"
-get "dashboard/grid" => "dashboard#bootstrap-grid"
 
- # The priority is based upon order of creation: first created -> highest priority.
+  root 'home#index'
+  get "dashboard" => "dashboard#index"
+  get "dashboard/grid" => "dashboard#bootstrap-grid"
+  get "dashboard/old" => "dashboard#oldDash"
+
+
+  # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
